@@ -1,4 +1,4 @@
-# pomo
+# pom
 
 *pomodoro timer on cli*
 
