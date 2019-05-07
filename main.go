@@ -1,9 +1,15 @@
 package main
 
 import (
+  "fmt"
+  "os"
+
   "github.com/YukihiroTaniguchi/pom/cmd"
 )
 
 func main() {
-  cmd.Run()
+  if err := cmd.RootCmd.Execute(); err != nil {
+    fmt.Fprintf(os.Stderr, "%s: %v\n", os.Args[0], err)
+    os.Exit(-1)
+  }
 }
