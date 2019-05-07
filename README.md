@@ -7,5 +7,11 @@
 
 ```shell
 docker-compose up
-docker exec -it pomo_app_1 go run main.go hoge
+docker exec -it pom_app_1 go run main.go hoge
+```
+
+### test mode on bash
+
+```shell
+go run main.go hoge
 ```

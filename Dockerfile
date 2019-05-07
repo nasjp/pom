@@ -1,6 +1,6 @@
 FROM golang:1.11
 
-WORKDIR .
+WORKDIR /app
 COPY . .
 
 RUN go get github.com/pilu/fresh

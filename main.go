@@ -1,7 +1,7 @@
 package main
 
 import (
-  "./cmd"
+  "github.com/YukihiroTaniguchi/pom/cmd"
 )
 
 func main() {
