@@ -36,6 +36,7 @@ to quickly create a Cobra application.`,
 
 ### Errors
 
+#### One
 ```shell
 build github.com/YukihiroTaniguchi/pom/cmd: cannot find module for path gopkg.in/mattn/go-colorable.v0
 ```
@@ -46,5 +47,13 @@ replace (
 	gopkg.in/mattn/go-isatty.v0 => github.com/mattn/go-isatty v0.0.6
 )
 ```
-
 [mattn/go-colorable Go modules bug](https://github.com/mattn/go-colorable/issues/35)
+
+
+#### Two
+```shell
+app_1  | 18:8:23 main        | Build Failed:
+app_1  |  can't load package: package github.com/YukihiroTaniguchi/pom: unknown import path "github.com/YukihiroTaniguchi/pom": cannot find module providing package github.com/YukihiroTaniguchi/pom
+pom_app_1 exited with code 1
+```
+if you use "fresh", you must use on cmd directory (there is "main.go")
