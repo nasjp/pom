@@ -2,14 +2,6 @@
 
 *pomodoro timer on cli*
 
-
-### test mode on docker-compose
-
-```shell
-~/$ docker-compose up
-~/$ docker exec -it pom_app_1 go run main.go hoge
-```
-
 ### if you build ...
 
 ```shell
@@ -20,6 +12,16 @@
 ### if you try testing ...
 ```shell
 ~/$ make test
+```
+
+### if you build in docker container ...
+```shell
+~/$ docker-compose up
+```
+
+### if you remove all docker images and containers ...
+```shell
+~/$ make clean-docker
 ```
 
 ### long message example
