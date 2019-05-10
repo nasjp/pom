@@ -6,14 +6,20 @@
 ### test mode on docker-compose
 
 ```shell
-docker-compose up
-docker exec -it pom_app_1 go run main.go hoge
+~/$ docker-compose up
+~/$ docker exec -it pom_app_1 go run main.go hoge
 ```
 
-### test mode on bash
+### if you build ...
 
 ```shell
-go run main.go hoge
+# this command execute tests before building
+~/$ make build
+```
+
+### if you try testing ...
+```shell
+~/$ make test
 ```
 
 ### long message example
