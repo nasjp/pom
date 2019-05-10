@@ -1,4 +1,4 @@
-package cmd
+package command
 
 import (
   "fmt"
@@ -10,21 +10,21 @@ import (
 
 // Options represents startCmd's options
 type Options struct {
-  mins int
+  Mins int
 }
 
 var (
   o = &Options{}
 )
 
-// startCmd represents the start command
-var startCmd = &cobra.Command{
+// StartCmd represents the start command
+var StartCmd = &cobra.Command{
   Use:   "start",
   Short: "start pomodoro timer",
   Args:  cobra.NoArgs,
   Run: func(cmd *cobra.Command, args []string) {
 
-    fmt.Printf("start pomodoro in %d minutes!!\n", o.mins)
+    fmt.Printf("start pomodoro in %d minutes!!\n", o.Mins)
 
     // Start parallel processing
     bar := `🍅  : {{etime .}} / {{string . "minutes"}}m ( {{percent . }} ) {{bar . "|" ">" ">" "-" "|" | red}} `
@@ -33,9 +33,9 @@ var startCmd = &cobra.Command{
 }
 
 func outputBar(tmpl string) {
-  secs := 60 * o.mins
+  secs := 60 * o.Mins
   bar := pb.ProgressBarTemplate(tmpl).Start(secs)
-  bar.Set("minutes", o.mins)
+  bar.Set("minutes", o.Mins)
   defer bar.Finish()
   for i := 0; i < secs; i++ {
     bar.Add(1)
@@ -44,6 +44,5 @@ func outputBar(tmpl string) {
 }
 
 func init() {
-  RootCmd.AddCommand(startCmd)
-  startCmd.Flags().IntVarP(&o.mins, "set", "s", 25, "set the timer")
+  StartCmd.Flags().IntVarP(&o.Mins, "set", "s", 25, "set the timer")
 }

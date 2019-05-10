@@ -1,4 +1,4 @@
-package cmd
+package command
 
 import (
   "fmt"
@@ -13,8 +13,4 @@ var RootCmd = &cobra.Command{
   Run: func(cmd *cobra.Command, args []string) {
     fmt.Println("root command")
   },
-}
-
-func init() {
-  cobra.OnInitialize()
 }
