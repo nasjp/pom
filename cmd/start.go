@@ -27,7 +27,8 @@ var startCmd = &cobra.Command{
     fmt.Printf("start pomodoro in %d minutes!!\n", o.mins)
 
     // Start parallel processing
-    outputBar(`🍅  : {{etime .}} / {{string . "minutes"}}m ( {{percent . }} ) {{bar . "|" ">" ">" "-" "|" | red}} `)
+    bar := `🍅  : {{etime .}} / {{string . "minutes"}}m ( {{percent . }} ) {{bar . "|" ">" ">" "-" "|" | red}} `
+    outputBar(bar)
   },
 }
 
