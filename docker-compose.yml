@@ -7,4 +7,4 @@ services:
       dockerfile: Dockerfile
     image: golang:1.11
     volumes:
-      - .:/app
+      - ./:/go/src/github.com/YukihiroTaniguchi/pom
