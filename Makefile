@@ -18,3 +18,6 @@ docker-clean-image:
 
 d-c-clean-image:
 	-docker-compose down --rmi all
+
+in-docker-container:
+	cd cmd/; fresh
