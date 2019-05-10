@@ -8,15 +8,15 @@ test:
 	@go test ./...
 	@echo test was successful!!
 
-docker-clean: d-c-clean-image docker-clean-container docker-clean-image;
+clean-docker: clean-docer-comopse-images clean-docker-images clean-docker-containers;
 
-docker-clean-container:
+clean-docker-containers:
 	-docker rm `docker container ls -qa`
 
-docker-clean-image:
+clean-docker-images:
 	-docker rmi -f `docker images -qa`
 
-d-c-clean-image:
+clean-docer-comopse-images:
 	-docker-compose down --rmi all
 
 in-docker-container:
