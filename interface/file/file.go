@@ -1,7 +1,6 @@
 package file
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -40,6 +39,5 @@ func sepPath(p string) (d string, f string) {
 	fs := strings.Split(p, "/")
 	d = strings.Join(fs[:len(fs)-1], "/")
 	f = fs[len(fs)-1]
-	fmt.Println(d, f)
 	return d, f
 }
