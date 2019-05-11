@@ -1,8 +1,8 @@
-# pom
+# **pom**
 
 ## A Go CLI Pomodoro Timer
 
-**~~~under development~~~**
+**---under development---**
 
 # Installing
 ```shell
@@ -11,27 +11,32 @@ go get -u github.com/YukihiroTaniguchi/pom/cmd/pom
 
 # For development
 
+```shell
+~/$ git clone https://github.com/YukihiroTaniguchi/pom.git
+~/$ cd pom
+```
+
 ### if you build ...
 
 ```shell
 # this command execute tests before building
-~/$ make
+~/pom$ make
 ```
 
 ### if you try testing ...
 ```shell
-~/$ make test
+~/pom$ make test
 ```
 
 ### if you build and execute in docker container ...
 ```shell
-~/$ docker-compose up
-~/$ make docker var=hoge
+~/pom$ docker-compose up
+~/pom$ make docker var=hoge
 ```
 
 ### if you remove all docker images and containers ...
 ```shell
-~/$ make clean-docker
+~/pom$ make clean-docker
 ```
 
 ### long message example
@@ -66,4 +71,4 @@ app_1  | 18:8:23 main        | Build Failed:
 app_1  |  can't load package: package github.com/YukihiroTaniguchi/pom: unknown import path "github.com/YukihiroTaniguchi/pom": cannot find module providing package github.com/YukihiroTaniguchi/pom
 pom_app_1 exited with code 1
 ```
-if you use "fresh", you must use on cmd directory (there is "main.go")
+if you use "fresh", you must use on cmd/pom directory (there is "main.go")
