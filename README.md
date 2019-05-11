@@ -6,7 +6,7 @@
 
 ```shell
 # this command execute tests before building
-~/$ make build
+~/$ make
 ```
 
 ### if you try testing ...
@@ -14,9 +14,10 @@
 ~/$ make test
 ```
 
-### if you build in docker container ...
+### if you build and execute in docker container ...
 ```shell
 ~/$ docker-compose up
+~/$ make docker var=hoge
 ```
 
 ### if you remove all docker images and containers ...
