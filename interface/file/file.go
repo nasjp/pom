@@ -3,6 +3,7 @@ package file
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"strings"
 )
 
@@ -18,6 +19,17 @@ func CreateOrNot(filePath string) error {
 		f, err = os.Create(fn)
 	}
 	defer f.Close()
+	return err
+}
+
+// Cd ...
+func Cd(dir string) error {
+	prev, err := filepath.Abs(".")
+	if err != nil {
+		return err
+	}
+	defer os.Chdir(prev)
+	os.Chdir(dir)
 	return err
 }
 
