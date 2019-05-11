@@ -1,8 +1,8 @@
 # pom
 
-*pomodoro timer on cli*
+## pomodoro timer on cli
 
-**under development**
+**===under development===**
 
 # Installing
 ```shell
