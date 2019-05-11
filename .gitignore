@@ -1,3 +1,4 @@
 # Go
 tmp
 pom
+!pom/

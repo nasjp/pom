@@ -6,15 +6,17 @@ GOTEST=go test ./...
 DOCKER=docker exec -it
 BINARY_NAME=pom
 DOCKER_SERVICE_NAME=pom_app_1
-MAIN=cmd/main.go
+MAIN=cmd/pom/
 
 # VAR
 var=
 
+export GO111MODULE=on
+
 all: build
 
 build: test clean
-	${GOBUILD} -o ${BINARY_NAME} ${MAIN}
+	${GOBUILD} -o ${BINARY_NAME} ${MAIN}main.go
 
 test:
 	${GOTEST}
@@ -23,7 +25,7 @@ clean:
 	${GOCLEAN}
 
 docker:
-	${DOCKER} ${DOCKER_SERVICE_NAME} ${GORUN} ${MAIN} ${var}
+	${DOCKER} ${DOCKER_SERVICE_NAME} ${GORUN} ${MAIN}main.go ${var}
 
 clean-docker: clean-docer-comopse-images clean-docker-containers clean-docker-images;
 
@@ -43,4 +45,4 @@ clean-docer-comopse-images:
 # in docker container
 
 in-docker-container:
-	cd cmd/; fresh
+	cd ${MAIN}; fresh
