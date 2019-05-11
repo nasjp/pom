@@ -1,8 +1,8 @@
 # pom
 
-## pomodoro timer on cli
+## A Go CLI Pomodoro Timer
 
-**===under development===**
+**~~~under development~~~**
 
 # Installing
 ```shell
