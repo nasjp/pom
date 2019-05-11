@@ -2,6 +2,15 @@
 
 *pomodoro timer on cli*
 
+**under development**
+
+# Installing
+```shell
+go get -u github.com/YukihiroTaniguchi/pom/cmd/pom
+```
+
+# For development
+
 ### if you build ...
 
 ```shell
