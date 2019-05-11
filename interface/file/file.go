@@ -8,8 +8,11 @@ import (
 )
 
 // CreateOrNot ...
-func CreateOrNot(filePath string) error {
-	dn, fn := sepPath(filePath)
+func CreateOrNot(fullPath string) error {
+	if err := Cd(fullPath); err != nil {
+		return err
+	}
+	dn, fn := sepPath(fullPath)
 	if err := os.Chdir(dn); err != nil {
 		os.MkdirAll(dn, 0777)
 		os.Chdir(dn)
