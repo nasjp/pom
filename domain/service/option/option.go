@@ -1,6 +1,6 @@
 package option
 
-// Options ...
-type Options struct {
+// Start ...
+type Start struct {
 	Mins int
 }

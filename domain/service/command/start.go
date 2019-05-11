@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	sto = &option.Options{}
+	sto = &option.Start{}
 )
 
 // StartCmd represents the start command
