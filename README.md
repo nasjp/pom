@@ -6,7 +6,12 @@
 
 # Installing
 ```shell
-go get -u github.com/YukihiroTaniguchi/pom/cmd/pom
+~/$ go get -u github.com/YukihiroTaniguchi/pom/cmd/pom
+```
+
+# Start pomodoro timer
+```shell
+~/$ pom start
 ```
 
 # For development
