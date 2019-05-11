@@ -27,16 +27,14 @@ func main() {
 		fmt.Fprintf(os.Stderr, "%s: %v\n", os.Args[0], err)
 		os.Exit(-1)
 	}
+
 	ev, err := environment.GetEnvVar(GOPATH)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%s: %v\n", os.Args[0], err)
 		os.Exit(-1)
 	}
-	if err := file.Cd(ev.Dir + APPDIR); err != nil {
-		fmt.Fprintf(os.Stderr, "%s: %v\n", os.Args[0], err)
-		os.Exit(-1)
-	}
-	if err := file.CreateOrNot("hoge/huga"); err != nil {
+
+	if err := file.CreateOrNot(ev.Dir + APPDIR + "/config/.pomrc"); err != nil {
 		fmt.Fprintf(os.Stderr, "%s: %v\n", os.Args[0], err)
 		os.Exit(-1)
 	}
