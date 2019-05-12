@@ -19,10 +19,7 @@ func InitConfigFile(fullPath string) error {
 		os.MkdirAll(dn, 0777)
 		os.Chdir(dn)
 	}
-	f, err := os.Open(fn)
-	if err != nil {
-		f, err = os.Create(fn)
-	}
+	f, err := os.OpenFile(fn, os.O_RDWR|os.O_CREATE, 0755)
 	if err != nil {
 		return err
 	}
