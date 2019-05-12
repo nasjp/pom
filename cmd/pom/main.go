@@ -15,8 +15,8 @@ const (
 	GOPATH = "GOPATH"
 	// APPDIR ...
 	APPDIR = "/src/github.com/YukihiroTaniguchi/pom"
-	// FILE ...
-	FILE = "/config/pom.json"
+	// CONFIG_FILE ...
+	CONFIG_FILE = "/config/pom.json"
 )
 
 func init() {
@@ -29,7 +29,7 @@ func init() {
 		os.Exit(-1)
 	}
 
-	if err := file.CreateOrNot(ev.Dir + APPDIR + FILE); err != nil {
+	if err := file.CreateOrNot(ev.Dir + APPDIR + CONFIG_FILE); err != nil {
 		fmt.Fprintf(os.Stderr, "%s: %v\n", os.Args[0], err)
 		os.Exit(-1)
 	}
