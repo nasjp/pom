@@ -10,7 +10,7 @@ import (
 )
 
 // InitConfigFile ...
-func InitConfigFile(fullPath string) error {
+func InitConfigFile(fullPath string, set *timeset.Setting) error {
 	if err := Cd(fullPath); err != nil {
 		return err
 	}
@@ -31,13 +31,7 @@ func InitConfigFile(fullPath string) error {
 	if fi.Size() > 0 {
 		return err
 	}
-	s := timeset.Setting{
-		Work:       25,
-		ShortBreak: 10,
-		LongBreak:  20,
-		Set:        10,
-	}
-	js, err := json.Marshal(s)
+	js, err := json.Marshal(set)
 	if err != nil {
 		return err
 	}

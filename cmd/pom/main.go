@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/YukihiroTaniguchi/pom/domain/model/timeset"
 	"github.com/YukihiroTaniguchi/pom/domain/service/command"
 	"github.com/YukihiroTaniguchi/pom/infrastructure/environment"
 	"github.com/YukihiroTaniguchi/pom/infrastructure/file"
@@ -19,6 +20,15 @@ const (
 	CONFIGFILE = "/config/pom.json"
 )
 
+var (
+	defaultConfig = timeset.Setting{
+		Work:       25,
+		ShortBreak: 10,
+		LongBreak:  20,
+		Set:        10,
+	}
+)
+
 func init() {
 	cobra.OnInitialize()
 	command.RootCmd.AddCommand(command.StartCmd)
@@ -29,7 +39,8 @@ func init() {
 		os.Exit(-1)
 	}
 
-	if err := file.InitConfigFile(ev.Dir + APPDIR + CONFIGFILE); err != nil {
+	path := ev.Dir + APPDIR + CONFIGFILE
+	if err := file.InitConfigFile(path, &defaultConfig); err != nil {
 		fmt.Fprintf(os.Stderr, "%s: %v\n", os.Args[0], err)
 		os.Exit(-1)
 	}
