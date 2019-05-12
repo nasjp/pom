@@ -11,7 +11,7 @@ import (
 
 // InitConfigFile ...
 func InitConfigFile(fullPath string, set *timeset.Setting) error {
-	if err := Cd(fullPath); err != nil {
+	if err := cd(fullPath); err != nil {
 		return err
 	}
 	dn, fn := sepPath(fullPath)
@@ -39,8 +39,7 @@ func InitConfigFile(fullPath string, set *timeset.Setting) error {
 	return err
 }
 
-// Cd ...
-func Cd(dir string) error {
+func cd(dir string) error {
 	prev, err := filepath.Abs(".")
 	if err != nil {
 		return err
