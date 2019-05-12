@@ -20,6 +20,7 @@ func InitConfigFile(fullPath string, set *timeset.Setting) error {
 	if err != nil {
 		return err
 	}
+	// if already wrote, return
 	if fi.Size() > 0 {
 		return err
 	}
