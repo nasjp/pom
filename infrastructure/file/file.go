@@ -1,9 +1,12 @@
 package file
 
 import (
+	"encoding/json"
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/YukihiroTaniguchi/pom/domain/model/timeset"
 )
 
 // InitConfigFile ...
@@ -24,6 +27,24 @@ func InitConfigFile(fullPath string) error {
 		return err
 	}
 	defer f.Close()
+	fi, err := f.Stat()
+	if err != nil {
+		return err
+	}
+	if fi.Size() > 0 {
+		return err
+	}
+	s := timeset.Setting{
+		Work:       25,
+		ShortBreak: 10,
+		LongBreak:  20,
+		Set:        10,
+	}
+	js, err := json.Marshal(s)
+	if err != nil {
+		return err
+	}
+	_, err = f.Write(js)
 	return err
 }
 
