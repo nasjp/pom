@@ -5,8 +5,8 @@ import (
 	"os"
 
 	"github.com/YukihiroTaniguchi/pom/domain/service/command"
-	"github.com/YukihiroTaniguchi/pom/interface/environment"
-	"github.com/YukihiroTaniguchi/pom/interface/file"
+	"github.com/YukihiroTaniguchi/pom/infrastructure/environment"
+	"github.com/YukihiroTaniguchi/pom/infrastructure/file"
 	"github.com/spf13/cobra"
 )
 
@@ -29,7 +29,7 @@ func init() {
 		os.Exit(-1)
 	}
 
-	if err := file.CreateOrNot(ev.Dir + APPDIR + CONFIGFILE); err != nil {
+	if err := file.InitConfigFile(ev.Dir + APPDIR + CONFIGFILE); err != nil {
 		fmt.Fprintf(os.Stderr, "%s: %v\n", os.Args[0], err)
 		os.Exit(-1)
 	}

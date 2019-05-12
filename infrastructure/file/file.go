@@ -6,8 +6,8 @@ import (
 	"strings"
 )
 
-// CreateOrNot ...
-func CreateOrNot(fullPath string) error {
+// InitConfigFile ...
+func InitConfigFile(fullPath string) error {
 	if err := Cd(fullPath); err != nil {
 		return err
 	}
