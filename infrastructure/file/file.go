@@ -20,6 +20,9 @@ func InitConfigFile(fullPath string) error {
 	if err != nil {
 		f, err = os.Create(fn)
 	}
+	if err != nil {
+		return err
+	}
 	defer f.Close()
 	return err
 }
