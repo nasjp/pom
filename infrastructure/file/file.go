@@ -11,19 +11,11 @@ import (
 
 // InitConfigFile ...
 func InitConfigFile(fullPath string, set *timeset.Setting) error {
-	if err := cd(fullPath); err != nil {
-		return err
-	}
-	dn, fn := sepPath(fullPath)
-	if err := os.Chdir(dn); err != nil {
-		os.MkdirAll(dn, 0777)
-		os.Chdir(dn)
-	}
-	f, err := os.OpenFile(fn, os.O_RDWR|os.O_CREATE, 0755)
+	f, err := openConfigFileInInit(fullPath)
+	defer f.Close()
 	if err != nil {
 		return err
 	}
-	defer f.Close()
 	fi, err := f.Stat()
 	if err != nil {
 		return err
@@ -54,4 +46,17 @@ func sepPath(p string) (d string, f string) {
 	d = strings.Join(fs[:len(fs)-1], "/")
 	f = fs[len(fs)-1]
 	return d, f
+}
+
+func openConfigFileInInit(p string) (f *os.File, err error) {
+	if err = cd(p); err != nil {
+		return f, err
+	}
+	dn, fn := sepPath(p)
+	if err = os.Chdir(dn); err != nil {
+		os.MkdirAll(dn, 0777)
+		os.Chdir(dn)
+	}
+	f, err = os.OpenFile(fn, os.O_RDWR|os.O_CREATE, 0755)
+	return f, err
 }
