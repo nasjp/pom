@@ -45,7 +45,12 @@ func outputBar(tmpl string) {
 
 func init() {
 	var err error
+	if err = file.Init(); err != nil {
+		fmt.Fprintf(os.Stderr, "%s: %v\n", os.Args[0], err)
+		os.Exit(-1)
+	}
 	s, err = file.Get()
+	fmt.Println(s)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%s: %v\n", os.Args[0], err)
 		os.Exit(-1)

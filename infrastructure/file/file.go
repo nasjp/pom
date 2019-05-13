@@ -52,26 +52,29 @@ func Init() (err error) {
 }
 
 // Get ...
-func Get() (set *timeset.Setting, err error) {
+func Get() (s *timeset.Setting, err error) {
 	f, err := openConfigFile()
 	defer f.Close()
 	if err != nil {
 		return
 	}
 	b, err := ioutil.ReadAll(f)
-	json.Unmarshal(b, &set)
+	json.Unmarshal(b, &s)
 	return
 }
 
 // Update ...
-func Update(set *timeset.Setting) (err error) {
+func Update(s *timeset.Setting) (err error) {
 	f, err := openConfigFile()
 	defer f.Close()
 	if err != nil {
 		return
 	}
-	js, err := json.Marshal(set)
+	js, err := json.Marshal(s)
 	if err != nil {
+		return
+	}
+	if err = f.Truncate(0); err != nil {
 		return
 	}
 	_, err = f.Write(js)
@@ -104,7 +107,8 @@ func openConfigFileInInit() (f *os.File, err error) {
 		os.MkdirAll(dn, 0777)
 		os.Chdir(dn)
 	}
-	f, err = os.OpenFile(fn, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0755)
+	fmt.Println(os.Getwd())
+	f, err = os.OpenFile(fn, os.O_RDWR|os.O_CREATE, 0666)
 	return
 }
 
@@ -118,6 +122,6 @@ func openConfigFile() (f *os.File, err error) {
 	if err = os.Chdir(dn); err != nil {
 		return
 	}
-	f, err = os.OpenFile(fn, os.O_RDWR, 0755)
+	f, err = os.OpenFile(fn, os.O_RDWR, 0666)
 	return
 }
