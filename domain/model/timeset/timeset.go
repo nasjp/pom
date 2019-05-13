@@ -2,8 +2,8 @@ package timeset
 
 // Setting ...
 type Setting struct {
-	Work       int `json:"work"`
-	ShortBreak int `json:"short_break"`
-	LongBreak  int `json:"long_break"`
-	Set        int `json:"set"`
+	Work       uint `json:"work"`
+	ShortBreak uint `json:"short_break"`
+	LongBreak  uint `json:"long_break"`
+	Times      uint `json:"times"`
 }
