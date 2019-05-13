@@ -1,4 +1,4 @@
-package command
+package set
 
 import (
 	"fmt"
@@ -20,8 +20,8 @@ var (
 	}
 )
 
-// SetCmd represents the start command
-var SetCmd = &cobra.Command{
+// Cmd represents the set command
+var Cmd = &cobra.Command{
 	Use:   "set",
 	Short: "set pomodoro timer",
 	Args:  cobra.NoArgs,
@@ -44,9 +44,9 @@ func init() {
 		os.Exit(-1)
 	}
 
-	SetCmd.Flags().BoolVarP(&d, "default", "d", false, "set default config")
-	SetCmd.Flags().UintVarP(&s.Work, "work", "w", s.Work, "set work minutes")
-	SetCmd.Flags().UintVarP(&s.ShortBreak, "short", "s", s.ShortBreak, "set short break minutes")
-	SetCmd.Flags().UintVarP(&s.LongBreak, "long", "l", s.LongBreak, "set long break minutes")
-	SetCmd.Flags().UintVarP(&s.Times, "times", "t", s.Times, "set pomodoro times")
+	Cmd.Flags().BoolVarP(&d, "default", "d", false, "set default config")
+	Cmd.Flags().UintVarP(&s.Work, "work", "w", s.Work, "set work minutes")
+	Cmd.Flags().UintVarP(&s.ShortBreak, "short", "s", s.ShortBreak, "set short break minutes")
+	Cmd.Flags().UintVarP(&s.LongBreak, "long", "l", s.LongBreak, "set long break minutes")
+	Cmd.Flags().UintVarP(&s.Times, "times", "t", s.Times, "set pomodoro times")
 }
