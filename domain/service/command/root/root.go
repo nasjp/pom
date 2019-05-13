@@ -1,4 +1,4 @@
-package command
+package root
 
 import (
 	"fmt"
@@ -6,8 +6,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// RootCmd is root command
-var RootCmd = &cobra.Command{
+// Cmd is root command
+var Cmd = &cobra.Command{
 	Use:   "pom",
 	Short: "pomodoro timer on shell",
 	Run: func(cmd *cobra.Command, args []string) {
