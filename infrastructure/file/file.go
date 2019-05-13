@@ -81,7 +81,7 @@ func Update(set *timeset.Setting) (err error) {
 func getEnvVar() (ep string, err error) {
 	ep = os.Getenv(GOPATH)
 	if ep == "" {
-		err = fmt.Errorf("\"%s\" is not defined", GOPATH)
+		err = fmt.Errorf("\"%s\" is not defined, please define", GOPATH)
 	}
 	return ep, err
 }
