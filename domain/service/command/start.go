@@ -30,15 +30,15 @@ var StartCmd = &cobra.Command{
 
 func outputBar(tmpl string) {
 	secs := 60 * sto.Mins
-	bar := pb.ProgressBarTemplate(tmpl).Start(secs)
+	bar := pb.ProgressBarTemplate(tmpl).Start(int(secs))
 	bar.Set("minutes", sto.Mins)
 	defer bar.Finish()
-	for i := 0; i < secs; i++ {
+	for i := 0; i < int(secs); i++ {
 		bar.Add(1)
 		time.Sleep(time.Second)
 	}
 }
 
 func init() {
-	StartCmd.Flags().IntVarP(&sto.Mins, "set", "s", 25, "set the timer")
+	StartCmd.Flags().UintVarP(&sto.Mins, "set", "s", 25, "set the timer")
 }
