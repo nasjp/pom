@@ -107,7 +107,6 @@ func openConfigFileInInit() (f *os.File, err error) {
 		os.MkdirAll(dn, 0777)
 		os.Chdir(dn)
 	}
-	fmt.Println(os.Getwd())
 	f, err = os.OpenFile(fn, os.O_RDWR|os.O_CREATE, 0666)
 	return
 }
