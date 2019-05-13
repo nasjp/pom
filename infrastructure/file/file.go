@@ -33,22 +33,22 @@ func Init() (err error) {
 	f, err := openConfigFileInInit()
 	defer f.Close()
 	if err != nil {
-		return err
+		return
 	}
 	fi, err := f.Stat()
 	if err != nil {
-		return err
+		return
 	}
 	// if already wrote, return
 	if fi.Size() > 0 {
-		return err
+		return
 	}
 	js, err := json.Marshal(defaultConfig)
 	if err != nil {
-		return err
+		return
 	}
 	_, err = f.Write(js)
-	return err
+	return
 }
 
 // Get ...
@@ -68,14 +68,14 @@ func Update(set *timeset.Setting) (err error) {
 	f, err := openConfigFile()
 	defer f.Close()
 	if err != nil {
-		return err
+		return
 	}
 	js, err := json.Marshal(set)
 	if err != nil {
-		return err
+		return
 	}
 	_, err = f.Write(js)
-	return err
+	return
 }
 
 func getEnvVar() (ep string, err error) {
@@ -83,14 +83,14 @@ func getEnvVar() (ep string, err error) {
 	if ep == "" {
 		err = fmt.Errorf("\"%s\" is not defined, please define", GOPATH)
 	}
-	return ep, err
+	return
 }
 
 func sepPath(p string) (d string, f string) {
 	fs := strings.Split(p, "/")
 	d = strings.Join(fs[:len(fs)-1], "/")
 	f = fs[len(fs)-1]
-	return d, f
+	return
 }
 
 func openConfigFileInInit() (f *os.File, err error) {
@@ -105,7 +105,7 @@ func openConfigFileInInit() (f *os.File, err error) {
 		os.Chdir(dn)
 	}
 	f, err = os.OpenFile(fn, os.O_RDWR|os.O_CREATE, 0755)
-	return f, err
+	return
 }
 
 func openConfigFile() (f *os.File, err error) {
