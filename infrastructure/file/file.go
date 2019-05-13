@@ -2,6 +2,7 @@ package file
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"os"
 	"strings"
@@ -9,9 +10,27 @@ import (
 	"github.com/YukihiroTaniguchi/pom/domain/model/timeset"
 )
 
+const (
+	// GOPATH ...
+	GOPATH = "GOPATH"
+	// APPDIR ...
+	APPDIR = "/src/github.com/YukihiroTaniguchi/pom"
+	// CONFIGFILE ...
+	CONFIGFILE = "/config/pom.json"
+)
+
+var (
+	defaultConfig = timeset.Setting{
+		Work:       25,
+		ShortBreak: 10,
+		LongBreak:  20,
+		Set:        10,
+	}
+)
+
 // Init ...
-func Init(fullPath string, set *timeset.Setting) (err error) {
-	f, err := openConfigFileInInit(fullPath)
+func Init() (err error) {
+	f, err := openConfigFileInInit()
 	defer f.Close()
 	if err != nil {
 		return err
@@ -24,7 +43,7 @@ func Init(fullPath string, set *timeset.Setting) (err error) {
 	if fi.Size() > 0 {
 		return err
 	}
-	js, err := json.Marshal(set)
+	js, err := json.Marshal(defaultConfig)
 	if err != nil {
 		return err
 	}
@@ -33,8 +52,8 @@ func Init(fullPath string, set *timeset.Setting) (err error) {
 }
 
 // Get ...
-func Get(fullPath string) (set *timeset.Setting, err error) {
-	f, err := openConfigFile(fullPath)
+func Get() (set *timeset.Setting, err error) {
+	f, err := openConfigFile()
 	defer f.Close()
 	if err != nil {
 		return
@@ -45,8 +64,8 @@ func Get(fullPath string) (set *timeset.Setting, err error) {
 }
 
 // Update ...
-func Update(fullPath string, set *timeset.Setting) (err error) {
-	f, err := openConfigFile(fullPath)
+func Update(set *timeset.Setting) (err error) {
+	f, err := openConfigFile()
 	defer f.Close()
 	if err != nil {
 		return err
@@ -59,6 +78,14 @@ func Update(fullPath string, set *timeset.Setting) (err error) {
 	return err
 }
 
+func getEnvVar() (ep string, err error) {
+	ep = os.Getenv(GOPATH)
+	if ep == "" {
+		err = fmt.Errorf("\"%s\" is not defined", GOPATH)
+	}
+	return ep, err
+}
+
 func sepPath(p string) (d string, f string) {
 	fs := strings.Split(p, "/")
 	d = strings.Join(fs[:len(fs)-1], "/")
@@ -66,7 +93,12 @@ func sepPath(p string) (d string, f string) {
 	return d, f
 }
 
-func openConfigFileInInit(p string) (f *os.File, err error) {
+func openConfigFileInInit() (f *os.File, err error) {
+	ep, err := getEnvVar()
+	if err != nil {
+		return
+	}
+	p := ep + APPDIR + CONFIGFILE
 	dn, fn := sepPath(p)
 	if err = os.Chdir(dn); err != nil {
 		os.MkdirAll(dn, 0777)
@@ -76,7 +108,12 @@ func openConfigFileInInit(p string) (f *os.File, err error) {
 	return f, err
 }
 
-func openConfigFile(p string) (f *os.File, err error) {
+func openConfigFile() (f *os.File, err error) {
+	ep, err := getEnvVar()
+	if err != nil {
+		return
+	}
+	p := ep + APPDIR + CONFIGFILE
 	dn, fn := sepPath(p)
 	if err = os.Chdir(dn); err != nil {
 		return

@@ -5,6 +5,11 @@ import (
 	"os"
 )
 
+const (
+	// GOPATH ...
+	GOPATH = "GOPATH"
+)
+
 // ENV ...
 type ENV struct {
 	Name string
@@ -12,14 +17,14 @@ type ENV struct {
 }
 
 // GetEnvVar ...
-func GetEnvVar(n string) (ev ENV, err error) {
+func GetEnvVar() (ev ENV, err error) {
 	err = nil
-	d := os.Getenv(n)
+	d := os.Getenv(GOPATH)
 	if d == "" {
-		err = fmt.Errorf("\"%s\" is not defined", n)
+		err = fmt.Errorf("\"%s\" is not defined", GOPATH)
 	}
 	ev = ENV{
-		Name: n,
+		Name: GOPATH,
 		Dir:  d,
 	}
 	return ev, err
