@@ -24,7 +24,7 @@ var (
 		Work:       25,
 		ShortBreak: 10,
 		LongBreak:  20,
-		Set:        10,
+		Times:      10,
 	}
 )
 
@@ -104,7 +104,7 @@ func openConfigFileInInit() (f *os.File, err error) {
 		os.MkdirAll(dn, 0777)
 		os.Chdir(dn)
 	}
-	f, err = os.OpenFile(fn, os.O_RDWR|os.O_CREATE, 0755)
+	f, err = os.OpenFile(fn, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0755)
 	return
 }
 
