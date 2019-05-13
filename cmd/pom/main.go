@@ -5,34 +5,17 @@ import (
 	"os"
 
 	"github.com/YukihiroTaniguchi/pom/domain/service/command"
-	"github.com/YukihiroTaniguchi/pom/infrastructure/environment"
 	"github.com/YukihiroTaniguchi/pom/infrastructure/file"
 	"github.com/spf13/cobra"
 )
 
-const (
-	// GOPATH ...
-	GOPATH = "GOPATH"
-	// APPDIR ...
-	APPDIR = "/src/github.com/YukihiroTaniguchi/pom"
-	// CONFIGFILE ...
-	CONFIGFILE = "/config/pom.json"
-)
-
 func init() {
+	if err := file.Init(); err != nil {
+		fmt.Fprintf(os.Stderr, "%s: %v\n", os.Args[0], err)
+		os.Exit(-1)
+	}
 	cobra.OnInitialize()
 	command.RootCmd.AddCommand(command.StartCmd)
-
-	ev, err := environment.GetEnvVar(GOPATH)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "%s: %v\n", os.Args[0], err)
-		os.Exit(-1)
-	}
-
-	if err := file.InitConfigFile(ev.Dir + APPDIR + CONFIGFILE); err != nil {
-		fmt.Fprintf(os.Stderr, "%s: %v\n", os.Args[0], err)
-		os.Exit(-1)
-	}
 }
 
 func main() {
