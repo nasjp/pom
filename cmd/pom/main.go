@@ -40,7 +40,7 @@ func init() {
 	}
 
 	path := ev.Dir + APPDIR + CONFIGFILE
-	if err := file.InitConfigFile(path, &defaultConfig); err != nil {
+	if err := file.Init(path, &defaultConfig); err != nil {
 		fmt.Fprintf(os.Stderr, "%s: %v\n", os.Args[0], err)
 		os.Exit(-1)
 	}

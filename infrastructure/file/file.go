@@ -2,15 +2,15 @@ package file
 
 import (
 	"encoding/json"
+	"io/ioutil"
 	"os"
-	"path/filepath"
 	"strings"
 
 	"github.com/YukihiroTaniguchi/pom/domain/model/timeset"
 )
 
-// InitConfigFile ...
-func InitConfigFile(fullPath string, set *timeset.Setting) error {
+// Init ...
+func Init(fullPath string, set *timeset.Setting) (err error) {
 	f, err := openConfigFileInInit(fullPath)
 	defer f.Close()
 	if err != nil {
@@ -32,13 +32,30 @@ func InitConfigFile(fullPath string, set *timeset.Setting) error {
 	return err
 }
 
-func cd(dir string) error {
-	prev, err := filepath.Abs(".")
+// Get ...
+func Get(fullPath string) (set *timeset.Setting, err error) {
+	f, err := openConfigFile(fullPath)
+	defer f.Close()
+	if err != nil {
+		return
+	}
+	b, err := ioutil.ReadAll(f)
+	json.Unmarshal(b, &set)
+	return
+}
+
+// Update ...
+func Update(fullPath string, set *timeset.Setting) (err error) {
+	f, err := openConfigFile(fullPath)
+	defer f.Close()
 	if err != nil {
 		return err
 	}
-	defer os.Chdir(prev)
-	os.Chdir(dir)
+	js, err := json.Marshal(set)
+	if err != nil {
+		return err
+	}
+	_, err = f.Write(js)
 	return err
 }
 
@@ -50,9 +67,6 @@ func sepPath(p string) (d string, f string) {
 }
 
 func openConfigFileInInit(p string) (f *os.File, err error) {
-	if err = cd(p); err != nil {
-		return f, err
-	}
 	dn, fn := sepPath(p)
 	if err = os.Chdir(dn); err != nil {
 		os.MkdirAll(dn, 0777)
@@ -60,4 +74,13 @@ func openConfigFileInInit(p string) (f *os.File, err error) {
 	}
 	f, err = os.OpenFile(fn, os.O_RDWR|os.O_CREATE, 0755)
 	return f, err
+}
+
+func openConfigFile(p string) (f *os.File, err error) {
+	dn, fn := sepPath(p)
+	if err = os.Chdir(dn); err != nil {
+		return
+	}
+	f, err = os.OpenFile(fn, os.O_RDWR, 0755)
+	return
 }
