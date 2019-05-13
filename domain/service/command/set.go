@@ -32,7 +32,7 @@ var SetCmd = &cobra.Command{
 			return
 		}
 		file.Update(s)
-		fmt.Printf("config is updated!!")
+		fmt.Printf("config is updated!!\n")
 	},
 }
 
