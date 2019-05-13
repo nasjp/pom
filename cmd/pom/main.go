@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/YukihiroTaniguchi/pom/domain/service/command/loop"
 	"github.com/YukihiroTaniguchi/pom/domain/service/command/root"
 	"github.com/YukihiroTaniguchi/pom/domain/service/command/set"
 	"github.com/YukihiroTaniguchi/pom/domain/service/command/start"
@@ -14,6 +15,7 @@ func init() {
 	cobra.OnInitialize()
 	root.Cmd.AddCommand(start.Cmd)
 	root.Cmd.AddCommand(set.Cmd)
+	root.Cmd.AddCommand(loop.Cmd)
 }
 
 func main() {
