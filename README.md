@@ -77,3 +77,22 @@ app_1  |  can't load package: package github.com/YukihiroTaniguchi/pom: unknown 
 pom_app_1 exited with code 1
 ```
 if you use "fresh", you must use on cmd/pom directory (there is "main.go")
+
+#### Three
+If there is a spelling mistake in the command, the error message is printed twice:
+```shell
+Error: unknown command "verson" for "test"
+
+Did you mean this?
+        version
+
+Run 'uberctl --help' for usage.
+unknown command "verson" for "uberctl"
+
+Did you mean this?
+        version
+```
+
+comment out the fmt.Println(err) and you won't see the second error message. Because cobra already print the error message in https://github.com/spf13/cobra/blob/master/command.go#L678
+
+[Error message is shown twice.](https://github.com/spf13/cobra/issues/304)
