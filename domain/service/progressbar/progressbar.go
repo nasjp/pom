@@ -7,12 +7,16 @@ import (
 	pb "gopkg.in/cheggaaa/pb.v2"
 )
 
+const (
+	// BAR ...
+	BAR = `🍅  : {{etime .}} / {{string . "minutes"}}m ( {{percent . }} ) {{bar . "|" ">" ">" "-" "|" | red}} `
+)
+
 // Run ...
 func Run(m uint) {
 	fmt.Printf("try to stay focus in %d minutes!!\n", m)
-	bar := `🍅  : {{etime .}} / {{string . "minutes"}}m ( {{percent . }} ) {{bar . "|" ">" ">" "-" "|" | red}} `
 	// Start parallel processing
-	outputBar(bar, m)
+	outputBar(BAR, m)
 }
 
 func outputBar(tmpl string, m uint) {
