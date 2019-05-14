@@ -1,6 +1,7 @@
 package progressbar
 
 import (
+	"fmt"
 	"time"
 
 	pb "gopkg.in/cheggaaa/pb.v2"
@@ -16,13 +17,15 @@ const (
 	SHORTBREAK Bar = `☕  : {{etime .}} / {{string . "minutes"}}m ( {{percent . }} ) {{bar . "|" ">" ">" "-" "|" | green}} `
 )
 
-// Run ...
-func Run(m uint) {
+// Work ...
+func Work(m uint) {
+	fmt.Printf("try to stay focus in %d minutes!!\n", m)
 	WORK.outputBar(m)
 }
 
 // ShortBreak ...
 func ShortBreak(m uint) {
+	fmt.Printf("Please take a break in %d minutes.\n", m)
 	SHORTBREAK.outputBar(m)
 }
 

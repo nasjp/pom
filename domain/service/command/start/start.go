@@ -3,14 +3,12 @@ package start
 import (
 	"fmt"
 	"os"
-	"time"
 
 	"github.com/YukihiroTaniguchi/pom/domain/model/timeset"
 	"github.com/YukihiroTaniguchi/pom/domain/service/option"
 	"github.com/YukihiroTaniguchi/pom/domain/service/progressbar"
 	"github.com/YukihiroTaniguchi/pom/infrastructure/file"
 	"github.com/spf13/cobra"
-	pb "gopkg.in/cheggaaa/pb.v2"
 )
 
 var (
@@ -24,19 +22,8 @@ var Cmd = &cobra.Command{
 	Short: "start pomodoro timer",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		progressbar.Run(o.Mins)
+		progressbar.Work(o.Mins)
 	},
-}
-
-func outputBar(tmpl string) {
-	secs := 60 * o.Mins
-	bar := pb.ProgressBarTemplate(tmpl).Start(int(secs))
-	bar.Set("minutes", o.Mins)
-	defer bar.Finish()
-	for i := 0; i < int(secs); i++ {
-		bar.Add(1)
-		time.Sleep(time.Second)
-	}
 }
 
 func init() {
