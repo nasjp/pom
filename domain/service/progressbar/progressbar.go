@@ -9,7 +9,7 @@ import (
 
 // Run ...
 func Run(m uint) {
-	fmt.Printf("start pomodoro in %d minutes!!\n", m)
+	fmt.Printf("try to stay focus in %d minutes!!\n", m)
 	bar := `🍅  : {{etime .}} / {{string . "minutes"}}m ( {{percent . }} ) {{bar . "|" ">" ">" "-" "|" | red}} `
 	// Start parallel processing
 	outputBar(bar, m)
