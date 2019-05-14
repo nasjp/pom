@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/YukihiroTaniguchi/pom/domain/service/command/loop"
@@ -20,7 +19,6 @@ func init() {
 
 func main() {
 	if err := root.Cmd.Execute(); err != nil {
-		fmt.Fprintf(os.Stderr, "%s: %v\n", os.Args[0], err)
 		os.Exit(-1)
 	}
 }
