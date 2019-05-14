@@ -15,6 +15,8 @@ const (
 	WORK Bar = `🍅  : {{etime .}} / {{string . "minutes"}}m ( {{percent . }} ) {{bar . "|" ">" ">" "-" "|" | red}} `
 	// SHORTBREAK ...
 	SHORTBREAK Bar = `☕  : {{etime .}} / {{string . "minutes"}}m ( {{percent . }} ) {{bar . "|" ">" ">" "-" "|" | green}} `
+	// LONGBREAK ...
+	LONGBREAK Bar = `☕  : {{etime .}} / {{string . "minutes"}}m ( {{percent . }} ) {{bar . "|" ">" ">" "-" "|" | yellow}} `
 )
 
 // Work ...
@@ -27,6 +29,12 @@ func Work(m uint) {
 func ShortBreak(m uint) {
 	fmt.Printf("Please take a break in %d minutes.\n", m)
 	SHORTBREAK.outputBar(m)
+}
+
+// LongBreak ...
+func LongBreak(m uint) {
+	fmt.Printf("You can take a longer break in %d minutes\n", m)
+	LONGBREAK.outputBar(m)
 }
 
 func (b Bar) outputBar(m uint) {

@@ -24,6 +24,9 @@ var Cmd = &cobra.Command{
 			fmt.Printf("Start %d / %d loops!!\n", i, s.Times)
 			progressbar.Work(s.Work)
 			progressbar.ShortBreak(s.ShortBreak)
+			if i%4 == 0 {
+				progressbar.LongBreak(s.LongBreak)
+			}
 		}
 	},
 }
