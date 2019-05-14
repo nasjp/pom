@@ -1,42 +1,31 @@
-package start
+package loop
 
 import (
 	"fmt"
 	"os"
-	"time"
 
 	"github.com/YukihiroTaniguchi/pom/domain/model/timeset"
-	"github.com/YukihiroTaniguchi/pom/domain/service/option"
 	"github.com/YukihiroTaniguchi/pom/domain/service/progressbar"
 	"github.com/YukihiroTaniguchi/pom/infrastructure/file"
 	"github.com/spf13/cobra"
-	pb "gopkg.in/cheggaaa/pb.v2"
 )
 
 var (
-	o = &option.Start{}
 	s = &timeset.Setting{}
 )
 
-// Cmd represents the start command
+// Cmd ...
 var Cmd = &cobra.Command{
-	Use:   "start",
-	Short: "start pomodoro timer",
+	Use:   "loop",
+	Short: "loop pomodoro timer",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		progressbar.Run(o.Mins)
+		for i := 1; i <= int(s.Times); i++ {
+			fmt.Printf("Start %d / %d loops!!\n", i, s.Times)
+			progressbar.Run(s.Work)
+			fmt.Printf("Finsh %d / %d loops!!, please take a break\n", i, s.Times)
+		}
 	},
-}
-
-func outputBar(tmpl string) {
-	secs := 60 * o.Mins
-	bar := pb.ProgressBarTemplate(tmpl).Start(int(secs))
-	bar.Set("minutes", o.Mins)
-	defer bar.Finish()
-	for i := 0; i < int(secs); i++ {
-		bar.Add(1)
-		time.Sleep(time.Second)
-	}
 }
 
 func init() {
@@ -50,5 +39,4 @@ func init() {
 		fmt.Fprintf(os.Stderr, "%s: %v\n", os.Args[0], err)
 		os.Exit(-1)
 	}
-	Cmd.Flags().UintVarP(&o.Mins, "set", "s", s.Work, "set the timer")
 }
