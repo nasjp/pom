@@ -42,7 +42,7 @@ clean-docer-comopse-images:
 	-@docker-compose down --rmi all
 
 delete-branch:
-	git branch --merged | grep -vE '^\*|master$|develop$' | xargs -I % git branch -d %
+	git branch --merged | grep -vE "^\*|master$$|develop$$" | xargs -I % git branch -d %
 
 # in docker container
 
