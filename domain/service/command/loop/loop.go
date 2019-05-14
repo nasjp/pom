@@ -22,8 +22,10 @@ var Cmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		for i := 1; i <= int(s.Times); i++ {
 			fmt.Printf("Start %d / %d loops!!\n", i, s.Times)
+			fmt.Printf("try to stay focus in %d minutes!!\n", s.Work)
 			progressbar.Run(s.Work)
 			fmt.Printf("Finsh %d / %d loops!!, please take a break\n", i, s.Times)
+			progressbar.ShortBreak(s.ShortBreak)
 		}
 	},
 }

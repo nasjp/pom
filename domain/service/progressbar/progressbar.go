@@ -1,27 +1,34 @@
 package progressbar
 
 import (
-	"fmt"
 	"time"
 
 	pb "gopkg.in/cheggaaa/pb.v2"
 )
 
+// Bar ...
+type Bar string
+
 const (
-	// BAR ...
-	BAR = `🍅  : {{etime .}} / {{string . "minutes"}}m ( {{percent . }} ) {{bar . "|" ">" ">" "-" "|" | red}} `
+	// WORK ...
+	WORK Bar = `🍅  : {{etime .}} / {{string . "minutes"}}m ( {{percent . }} ) {{bar . "|" ">" ">" "-" "|" | red}} `
+	// SHORTBREAK ...
+	SHORTBREAK Bar = `☕  : {{etime .}} / {{string . "minutes"}}m ( {{percent . }} ) {{bar . "|" ">" ">" "-" "|" | green}} `
 )
 
 // Run ...
 func Run(m uint) {
-	fmt.Printf("try to stay focus in %d minutes!!\n", m)
-	// Start parallel processing
-	outputBar(BAR, m)
+	WORK.outputBar(m)
 }
 
-func outputBar(tmpl string, m uint) {
+// ShortBreak ...
+func ShortBreak(m uint) {
+	SHORTBREAK.outputBar(m)
+}
+
+func (b Bar) outputBar(m uint) {
 	secs := 60 * m
-	bar := pb.ProgressBarTemplate(tmpl).Start(int(secs))
+	bar := pb.ProgressBarTemplate(b).Start(int(secs))
 	bar.Set("minutes", m)
 	defer bar.Finish()
 	for i := 0; i < int(secs); i++ {
