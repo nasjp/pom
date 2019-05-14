@@ -20,7 +20,11 @@ var Cmd = &cobra.Command{
 	Short: "loop pomodoro timer",
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		progressbar.Run(s.Work)
+		for i := 1; i <= int(s.Times); i++ {
+			fmt.Printf("Start %d / %d loops!!\n", i, s.Times)
+			progressbar.Run(s.Work)
+			fmt.Printf("Finsh %d / %d loops!!, please take a break\n", i, s.Times)
+		}
 	},
 }
 
