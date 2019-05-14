@@ -2,3 +2,4 @@
 tmp
 pom
 !pom/
+config/pom.json
