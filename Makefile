@@ -41,8 +41,13 @@ clean-docer-comopse-images:
 	@echo ======================= start docker-compose down ======================
 	-@docker-compose down --rmi all
 
+# git remove marged branches without master
 delete-branch:
 	git branch --merged | grep -vE "^\*|master$$|develop$$" | xargs -I % git branch -d %
+
+# debug:
+# debug:
+# 	dlv debug --wd="/${MAIN}
 
 # in docker container
 
