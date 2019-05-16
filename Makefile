@@ -45,9 +45,9 @@ clean-docer-comopse-images:
 delete-branch:
 	git branch --merged | grep -vE "^\*|master$$|develop$$" | xargs -I % git branch -d %
 
-# debug:
-# debug:
-# 	dlv debug --wd="/${MAIN}
+# debug with delve
+dlv:
+	cd ${MAIN} && dlv debug
 
 # in docker container
 
