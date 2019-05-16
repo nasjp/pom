@@ -21,18 +21,27 @@ const (
 
 // Work ...
 func Work(m uint) {
+	if 0 == m {
+		return
+	}
 	fmt.Printf("try to stay focus in %d minutes!!\n", m)
 	WORK.outputBar(m)
 }
 
 // ShortBreak ...
 func ShortBreak(m uint) {
+	if 0 == m {
+		return
+	}
 	fmt.Printf("Please take a break in %d minutes.\n", m)
 	SHORTBREAK.outputBar(m)
 }
 
 // LongBreak ...
 func LongBreak(m uint) {
+	if 0 == m {
+		return
+	}
 	fmt.Printf("You can take a longer break in %d minutes\n", m)
 	LONGBREAK.outputBar(m)
 }
