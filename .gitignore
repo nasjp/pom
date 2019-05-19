@@ -3,3 +3,4 @@ tmp
 pom
 !pom/
 config/pom.json
+.idea/

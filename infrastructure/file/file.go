@@ -13,17 +13,17 @@ func sepPath(p string) (d string, f string) {
 	return
 }
 
-// Create ...
-func Create(json []byte, path string) (err error) {
+func create(json []byte, path string) (err error) {
 	dirName, fileName := sepPath(path)
 	if err = os.Chdir(dirName); err != nil {
-		err = os.MkdirAll(dirName, 0777)
-		os.Chdir(dirName)
+		if err = os.MkdirAll(dirName, 0777); err != nil {
+			return
+		}
+		if err = os.Chdir(dirName); err != nil {
+			return
+		}
 	}
 	f, err := os.OpenFile(fileName, os.O_RDWR|os.O_CREATE, 0666)
-	if err != nil {
-		return
-	}
 	if err != nil {
 		return
 	}
@@ -31,8 +31,7 @@ func Create(json []byte, path string) (err error) {
 	return
 }
 
-// Get ...
-func Get(path string) (json []byte, err error) {
+func get(path string) (json []byte, err error) {
 	dirName, fileName := sepPath(path)
 	if err = os.Chdir(dirName); err != nil {
 		return
@@ -42,15 +41,11 @@ func Get(path string) (json []byte, err error) {
 		return
 	}
 	defer f.Close()
-	if err != nil {
-		return
-	}
 	json, err = ioutil.ReadAll(f)
 	return
 }
 
-// Update ...
-func Update(json []byte, path string) (err error) {
+func update(json []byte, path string) (err error) {
 	dirName, fileName := sepPath(path)
 	if err = os.Chdir(dirName); err != nil {
 		return
@@ -60,12 +55,6 @@ func Update(json []byte, path string) (err error) {
 		return
 	}
 	defer f.Close()
-	if err != nil {
-		return
-	}
-	if err != nil {
-		return
-	}
 	if err = f.Truncate(0); err != nil {
 		return
 	}
@@ -73,8 +62,7 @@ func Update(json []byte, path string) (err error) {
 	return
 }
 
-// Delete ...
-func Delete(path string) (err error) {
+func remove(path string) (err error) {
 	dirName, fileName := sepPath(path)
 	if err = os.Chdir(dirName); err != nil {
 		return
