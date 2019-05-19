@@ -1,7 +1,7 @@
-package timeset
+package model
 
-// Setting ...
-type Setting struct {
+// TimerSet ...
+type TimerSet struct {
 	Work       uint `json:"work"`
 	ShortBreak uint `json:"short_break"`
 	LongBreak  uint `json:"long_break"`

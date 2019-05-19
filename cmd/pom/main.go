@@ -3,22 +3,21 @@ package main
 import (
 	"os"
 
-	"github.com/YukihiroTaniguchi/pom/domain/service/command/loop"
-	"github.com/YukihiroTaniguchi/pom/domain/service/command/root"
-	"github.com/YukihiroTaniguchi/pom/domain/service/command/set"
-	"github.com/YukihiroTaniguchi/pom/domain/service/command/start"
-	"github.com/spf13/cobra"
+	"github.com/YukihiroTaniguchi/pom/application/usecase"
+	"github.com/YukihiroTaniguchi/pom/infrastructure/file"
+	"github.com/YukihiroTaniguchi/pom/presentation/api/handler"
+	"github.com/YukihiroTaniguchi/pom/presentation/api/router"
 )
 
-func init() {
-	cobra.OnInitialize()
-	root.Cmd.AddCommand(start.Cmd)
-	root.Cmd.AddCommand(set.Cmd)
-	root.Cmd.AddCommand(loop.Cmd)
-}
-
 func main() {
-	if err := root.Cmd.Execute(); err != nil {
+	r := file.NewTimerSetRepository()
+	u := usecase.NewTimerSetUsecase(r)
+	h := handler.NewTimerSetHandler(u)
+	root, err := router.NewRouter(h)
+	if err != nil {
+		os.Exit(-1)
+	}
+	if err := root.Execute(); err != nil {
 		os.Exit(-1)
 	}
 }
