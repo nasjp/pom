@@ -2,6 +2,7 @@ package handler
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/YukihiroTaniguchi/pom/application/usecase"
 	"github.com/YukihiroTaniguchi/pom/domain/model"
@@ -76,11 +77,17 @@ func (h *timerSetHandler) ExecSet() (cmd *cobra.Command, err error) {
 		Args:  cobra.NoArgs,
 		Run: func(cmd *cobra.Command, args []string) {
 			if d {
-				h.TimerSetUseCase.Update(ds, model.GetConfigFile())
+				err = h.TimerSetUseCase.Update(ds, model.GetConfigFile())
+				if err != nil {
+					log.Fatal(err)
+				}
 				fmt.Printf("set default config!!\n")
 				return
 			}
-			h.TimerSetUseCase.Update(s, model.GetConfigFile())
+			err = h.TimerSetUseCase.Update(s, model.GetConfigFile())
+			if err != nil {
+				log.Fatal(err)
+			}
 			fmt.Printf("config is updated!!\n")
 		},
 	}

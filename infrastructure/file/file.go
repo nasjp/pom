@@ -24,6 +24,9 @@ func create(json []byte, path string) (err error) {
 		}
 	}
 	f, err := os.OpenFile(fileName, os.O_RDWR|os.O_CREATE, 0666)
+	defer func() {
+		err = f.Close()
+	}()
 	if err != nil {
 		return
 	}
@@ -40,7 +43,9 @@ func get(path string) (json []byte, err error) {
 	if err != nil {
 		return
 	}
-	defer f.Close()
+	defer func() {
+		err = f.Close()
+	}()
 	json, err = ioutil.ReadAll(f)
 	return
 }
@@ -54,7 +59,9 @@ func update(json []byte, path string) (err error) {
 	if err != nil {
 		return
 	}
-	defer f.Close()
+	defer func() {
+		err = f.Close()
+	}()
 	if err = f.Truncate(0); err != nil {
 		return
 	}
