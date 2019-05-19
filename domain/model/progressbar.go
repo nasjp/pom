@@ -1,4 +1,4 @@
-package progressbar
+package model
 
 import (
 	"fmt"
