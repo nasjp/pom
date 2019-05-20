@@ -17,6 +17,11 @@ const (
 	SHORTBREAK Bar = `☕  : {{etime .}} / {{string . "minutes"}}m ( {{percent . }} ) {{bar . "|" ">" ">" "-" "|" | green}} `
 	// LONGBREAK ...
 	LONGBREAK Bar = `💤  : {{etime .}} / {{string . "minutes"}}m ( {{percent . }} ) {{bar . "|" ">" ">" "-" "|" | magenta}} `
+
+	// MOBWORK ...
+	MOBWORK Bar = `⏰  : {{etime .}} / {{string . "minutes"}}m ( {{percent . }} ) {{bar . "|" ">" ">" "-" "|" | yellow}} `
+	// MOBINTERVAL ...
+	MOBINTERVAL Bar = `🔄  : {{etime .}} / {{string . "seconds"}}m ( {{percent . }} ) {{bar . "|" ">" ">" "-" "|" | cyan}} `
 )
 
 // Work ...
@@ -46,10 +51,36 @@ func LongBreak(m uint) {
 	LONGBREAK.outputBar(m)
 }
 
+func MobWorkBar(m uint) {
+	if 0 == m {
+		return
+	}
+	fmt.Printf("Start mob programming in %d minutes!!\n", m)
+	MOBWORK.outputBar(m)
+}
+
+func MobIntervalBar(s uint) {
+	if 0 == s {
+		return
+	}
+	fmt.Printf("Change from person to person in %d seconds\n", s)
+	MOBINTERVAL.outputBarSecs(s)
+}
+
 func (b Bar) outputBar(m uint) {
 	secs := 60 * m
 	bar := pb.ProgressBarTemplate(b).Start(int(secs))
 	bar.Set("minutes", m)
+	defer bar.Finish()
+	for i := 0; i < int(secs); i++ {
+		bar.Add(1)
+		time.Sleep(time.Second)
+	}
+}
+
+func (b Bar) outputBarSecs(secs uint) {
+	bar := pb.ProgressBarTemplate(b).Start(int(secs))
+	bar.Set("seconds", secs)
 	defer bar.Finish()
 	for i := 0; i < int(secs); i++ {
 		bar.Add(1)

@@ -16,6 +16,11 @@ var (
 		LongBreak:  20,
 		Times:      10,
 	}
+
+	mob = &model.MobSet{
+		WorkMin:     10,
+		IntervalSec: 20,
+	}
 )
 
 // TimerSetHandler ...
@@ -24,6 +29,7 @@ type TimerSetHandler interface {
 	ExecStart() (*cobra.Command, error)
 	ExecSet() (*cobra.Command, error)
 	ExecLoop() (*cobra.Command, error)
+	ExecMob() (*cobra.Command, error)
 }
 
 type timerSetHandler struct {
@@ -120,5 +126,21 @@ func (h *timerSetHandler) ExecLoop() (cmd *cobra.Command, err error) {
 			}
 		},
 	}
+	return
+}
+
+func (h *timerSetHandler) ExecMob() (cmd *cobra.Command, err error) {
+	cmd = &cobra.Command{
+		Use:   "mob",
+		Short: "start mob programming with pomodoro",
+		Args:  cobra.NoArgs,
+		Run: func(cmd *cobra.Command, args []string) {
+			for {
+				model.MobWorkBar(mob.WorkMin)
+				model.MobIntervalBar(mob.IntervalSec)
+			}
+		},
+	}
+	cmd.Flags().UintVarP(&mob.WorkMin, "set", "s", mob.WorkMin, "set mob minutes")
 	return
 }

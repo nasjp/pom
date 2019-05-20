@@ -30,5 +30,10 @@ func NewRouter(h handler.TimerSetHandler) (root *cobra.Command, err error) {
 		return
 	}
 	root.AddCommand(loop)
+	mob, err := h.ExecMob()
+	if err != nil {
+		return
+	}
+	root.AddCommand(mob)
 	return
 }
