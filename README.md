@@ -96,3 +96,4 @@ Did you mean this?
 comment out the fmt.Println(err) and you won't see the second error message. Because cobra already print the error message in https://github.com/spf13/cobra/blob/master/command.go#L678
 
 [Error message is shown twice.](https://github.com/spf13/cobra/issues/304)
+
