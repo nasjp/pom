@@ -8,8 +8,8 @@ import (
 var (
 	gopath     = "GOPATH"
 	appDir     = "/src/github.com/YukihiroTaniguchi/pom"
-	configFile = "/config/pom.json"
-	//presetDir = "/config/preset/"
+	configFile = "/config/timerset.json"
+	grobalFile = "/config/grobal.json"
 )
 
 // GetGOPATH ...
@@ -29,4 +29,9 @@ func GetAppDir() string {
 // GetConfigFile ...
 func GetConfigFile() string {
 	return configFile
+}
+
+// GetGrobalFile ...
+func GetGrobalFile() string {
+	return grobalFile
 }
