@@ -8,8 +8,7 @@ import (
 var (
 	gopath     = "GOPATH"
 	appDir     = "/src/github.com/YukihiroTaniguchi/pom"
-	configFile = "/config/pom.json"
-	//presetDir = "/config/preset/"
+	configFile = "/config/timerset.json"
 )
 
 // GetGOPATH ...
