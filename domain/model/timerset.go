@@ -6,4 +6,5 @@ type TimerSet struct {
 	ShortBreak uint `json:"short_break"`
 	LongBreak  uint `json:"long_break"`
 	Times      uint `json:"times"`
+	Sound      bool `json:"sound"`
 }

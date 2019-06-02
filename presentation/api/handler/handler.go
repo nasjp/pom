@@ -15,6 +15,7 @@ var (
 		ShortBreak: 10,
 		LongBreak:  20,
 		Times:      10,
+		Sound:      true,
 	}
 
 	mob = &model.MobSet{
@@ -30,6 +31,7 @@ type TimerSetHandler interface {
 	ExecSet() (*cobra.Command, error)
 	ExecLoop() (*cobra.Command, error)
 	ExecMob() (*cobra.Command, error)
+	ExecSetSound() (*cobra.Command, error)
 }
 
 type timerSetHandler struct {
@@ -142,5 +144,32 @@ func (h *timerSetHandler) ExecMob() (cmd *cobra.Command, err error) {
 		},
 	}
 	cmd.Flags().UintVarP(&mob.WorkMin, "set", "s", mob.WorkMin, "set mob minutes")
+	return
+}
+
+func (h *timerSetHandler) ExecSetSound() (cmd *cobra.Command, err error) {
+	s, err := h.TimerSetUseCase.Get(model.GetConfigFile())
+	if err != nil {
+		return
+	}
+	cmd = &cobra.Command{
+		Use:   "sound",
+		Short: "enable sound or not",
+		Args:  cobra.NoArgs,
+		Run: func(cmd *cobra.Command, args []string) {
+			if s.Sound {
+				s.Sound = false
+				if err = h.TimerSetUseCase.Update(s, model.GetConfigFile()); err != nil {
+					log.Fatal(err)
+				}
+			} else {
+				s.Sound = true
+				if err = h.TimerSetUseCase.Update(s, model.GetConfigFile()); err != nil {
+					log.Fatal(err)
+				}
+			}
+			fmt.Printf("Sound mode changed : %t \n", s.Sound)
+		},
+	}
 	return
 }
