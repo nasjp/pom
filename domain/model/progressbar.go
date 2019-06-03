@@ -2,8 +2,13 @@ package model
 
 import (
 	"fmt"
+	"io"
+	"log"
+	"os"
 	"time"
 
+	mp3 "github.com/hajimehoshi/go-mp3"
+	"github.com/hajimehoshi/oto"
 	pb "gopkg.in/cheggaaa/pb.v2"
 )
 
@@ -73,6 +78,11 @@ func (b Bar) outputBar(m uint) {
 	bar.Set("minutes", m)
 	defer bar.Finish()
 	for i := 0; i < int(secs); i++ {
+		if int(secs)-i == 4 {
+			if err := sound(); err != nil {
+				log.Fatal(err)
+			}
+		}
 		bar.Add(1)
 		time.Sleep(time.Second)
 	}
@@ -83,7 +93,38 @@ func (b Bar) outputBarSecs(secs uint) {
 	bar.Set("seconds", secs)
 	defer bar.Finish()
 	for i := 0; i < int(secs); i++ {
+		if int(secs)-i == 4 {
+			if err := sound(); err != nil {
+				log.Fatal(err)
+			}
+		}
 		bar.Add(1)
 		time.Sleep(time.Second)
 	}
+}
+
+func sound() error {
+	f, err := os.Open("count.mp3")
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	d, err := mp3.NewDecoder(f)
+	if err != nil {
+		return err
+	}
+
+	p, err := oto.NewPlayer(d.SampleRate(), 2, 2, 8192)
+	if err != nil {
+		return err
+	}
+	defer p.Close()
+
+	fmt.Printf("Length: %d[bytes]\n", d.Length())
+
+	if _, err := io.Copy(p, d); err != nil {
+		return err
+	}
+	return nil
 }

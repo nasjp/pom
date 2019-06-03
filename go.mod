@@ -1,6 +1,8 @@
 module github.com/YukihiroTaniguchi/pom
 
 require (
+	github.com/hajimehoshi/go-mp3 v0.2.1
+	github.com/hajimehoshi/oto v0.3.4
 	github.com/howeyc/fsnotify v0.9.0 // indirect
 	github.com/mattn/go-colorable v0.1.1 // indirect
 	github.com/mattn/go-isatty v0.0.7 // indirect
