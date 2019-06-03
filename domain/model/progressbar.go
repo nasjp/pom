@@ -78,7 +78,7 @@ func (b Bar) outputBar(m uint) {
 	bar.Set("minutes", m)
 	defer bar.Finish()
 	for i := 0; i < int(secs); i++ {
-		if int(secs)-i == 4 {
+		if int(secs)-i == 5 {
 			if err := sound(); err != nil {
 				log.Fatal(err)
 			}
@@ -93,7 +93,7 @@ func (b Bar) outputBarSecs(secs uint) {
 	bar.Set("seconds", secs)
 	defer bar.Finish()
 	for i := 0; i < int(secs); i++ {
-		if int(secs)-i == 4 {
+		if int(secs)-i == 5 {
 			if err := sound(); err != nil {
 				log.Fatal(err)
 			}
