@@ -47,9 +47,6 @@ func (h *timerSetHandler) ExecRoot() (cmd *cobra.Command, err error) {
 	cmd = &cobra.Command{
 		Use:   "pom",
 		Short: "pomodoro timer on shell",
-		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("root command")
-		},
 	}
 	return
 }
