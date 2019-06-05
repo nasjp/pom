@@ -6,6 +6,7 @@
 
 # Installing
 ```shell
+~/$ export GO111MODULE=auto
 ~/$ go get -u github.com/YukihiroTaniguchi/pom/cmd/pom
 ```
 
