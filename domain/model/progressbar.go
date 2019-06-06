@@ -121,8 +121,6 @@ func sound() error {
 	}
 	defer p.Close()
 
-	fmt.Printf("Length: %d[bytes]\n", d.Length())
-
 	if _, err := io.Copy(p, d); err != nil {
 		return err
 	}
