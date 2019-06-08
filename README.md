@@ -7,7 +7,7 @@
 # Installing
 ```shell
 ~/$ export GO111MODULE=auto
-~/$ go get -u github.com/YukihiroTaniguchi/pom/cmd/pom
+~/$ go get -u github.com/NasSilverBullet/pom/cmd/pom
 ```
 
 # Start pomodoro timer
@@ -18,7 +18,7 @@
 # For development
 
 ```shell
-~/$ git clone https://github.com/YukihiroTaniguchi/pom.git
+~/$ git clone https://github.com/NasSilverBullet/pom.git
 ~/$ cd pom
 ```
 
@@ -59,7 +59,7 @@ to quickly create a Cobra application.`,
 
 #### One
 ```shell
-build github.com/YukihiroTaniguchi/pom/cmd: cannot find module for path gopkg.in/mattn/go-colorable.v0
+build github.com/NasSilverBullet/pom/cmd: cannot find module for path gopkg.in/mattn/go-colorable.v0
 ```
 if you have this error, adding an override to go.mod
 ```go.mod
@@ -74,7 +74,7 @@ replace (
 #### Two
 ```shell
 app_1  | 18:8:23 main        | Build Failed:
-app_1  |  can't load package: package github.com/YukihiroTaniguchi/pom: unknown import path "github.com/YukihiroTaniguchi/pom": cannot find module providing package github.com/YukihiroTaniguchi/pom
+app_1  |  can't load package: package github.com/NasSilverBullet/pom: unknown import path "github.com/NasSilverBullet/pom": cannot find module providing package github.com/NasSilverBullet/pom
 pom_app_1 exited with code 1
 ```
 if you use "fresh", you must use on cmd/pom directory (there is "main.go")
