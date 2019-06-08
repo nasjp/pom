@@ -1,4 +1,4 @@
-module github.com/YukihiroTaniguchi/pom
+module github.com/NasSilverBullet/pom
 
 require (
 	cloud.google.com/go v0.39.0 // indirect

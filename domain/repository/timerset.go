@@ -1,6 +1,6 @@
 package repository
 
-import "github.com/YukihiroTaniguchi/pom/domain/model"
+import "github.com/NasSilverBullet/pom/domain/model"
 
 // TimerSetRepository ...
 type TimerSetRepository interface {

@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/YukihiroTaniguchi/pom/domain/model"
-	"github.com/YukihiroTaniguchi/pom/domain/repository"
+	"github.com/NasSilverBullet/pom/domain/model"
+	"github.com/NasSilverBullet/pom/domain/repository"
 )
 
 type timerSetRepository struct {

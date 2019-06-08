@@ -7,7 +7,7 @@ import (
 
 var (
 	gopath     = "GOPATH"
-	appDir     = "/src/github.com/YukihiroTaniguchi/pom"
+	appDir     = "/src/github.com/NasSilverBullet/pom"
 	configFile = "/config/timerset.json"
 	grobalFile = "/config/grobal.json"
 )

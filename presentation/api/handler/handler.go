@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/YukihiroTaniguchi/pom/application/usecase"
-	"github.com/YukihiroTaniguchi/pom/domain/model"
+	"github.com/NasSilverBullet/pom/application/usecase"
+	"github.com/NasSilverBullet/pom/domain/model"
 	"github.com/spf13/cobra"
 )
 

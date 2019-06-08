@@ -1,7 +1,7 @@
 package router
 
 import (
-	"github.com/YukihiroTaniguchi/pom/presentation/api/handler"
+	"github.com/NasSilverBullet/pom/presentation/api/handler"
 	"github.com/spf13/cobra"
 )
 

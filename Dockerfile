@@ -1,6 +1,6 @@
 FROM golang:1.11
 
-WORKDIR /go/src/github.com/YukihiroTaniguchi/pom
+WORKDIR /go/src/github.com/NasSilverBullet/pom
 COPY . .
 ENV GO111MODULE=on
 

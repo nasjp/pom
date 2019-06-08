@@ -3,10 +3,10 @@ package main
 import (
 	"os"
 
-	"github.com/YukihiroTaniguchi/pom/application/usecase"
-	"github.com/YukihiroTaniguchi/pom/infrastructure/file"
-	"github.com/YukihiroTaniguchi/pom/presentation/api/handler"
-	"github.com/YukihiroTaniguchi/pom/presentation/api/router"
+	"github.com/NasSilverBullet/pom/application/usecase"
+	"github.com/NasSilverBullet/pom/infrastructure/file"
+	"github.com/NasSilverBullet/pom/presentation/api/handler"
+	"github.com/NasSilverBullet/pom/presentation/api/router"
 )
 
 func main() {
