@@ -6,43 +6,43 @@
 
 # Installing
 ```shell
-~/$ export GO111MODULE=auto
-~/$ go get -u github.com/NasSilverBullet/pom/cmd/pom
+$ export GO111MODULE=auto
+$ go get github.com/NasSilverBullet/pom/cmd/pom
 ```
 
 # Start pomodoro timer
 ```shell
-~/$ pom start
+$ pom start
 ```
 
 # For development
 
 ```shell
-~/$ git clone https://github.com/NasSilverBullet/pom.git
-~/$ cd pom
+$ git clone https://github.com/NasSilverBullet/pom.git
+$ cd pom
 ```
 
 ### if you build ...
 
 ```shell
 # this command execute tests before building
-~/pom$ make
+$ make
 ```
 
 ### if you try testing ...
 ```shell
-~/pom$ make test
+$ make test
 ```
 
 ### if you build and execute in docker container ...
 ```shell
-~/pom$ docker-compose up
-~/pom$ make docker var=hoge
+$ docker-compose up
+$ make docker var=hoge
 ```
 
 ### if you remove all docker images and containers ...
 ```shell
-~/pom$ make clean-docker
+$ make clean-docker
 ```
 
 ### long message example
