@@ -2,18 +2,39 @@
 
 ## A Go CLI Pomodoro Timer
 
-**---under development---**
-
-# Installing
+### Installing
 ```shell
 $ export GO111MODULE=auto
 $ go get github.com/NasSilverBullet/pom/cmd/pom
 ```
 
-# Start pomodoro timer
+### Start pomodoro timer
 ```shell
 $ pom start
 ```
+
+### Usage
+```shell
+$ pom [command]
+```
+
+### Available Commands:
+```shell
+help        Help about any command
+loop        loop pomodoro timer
+mob         start mob programming with pomodoro
+set         set pomodoro timer
+start       start pomodoro timer
+```
+
+### You can do this for example with the following command
+```shell
+$ pom loop
+Start 1 / 10 loops!!
+try to stay focus in 25 minutes!!
+🍅  : 1m51s / 25m ( 7.40% ) |>>>>>>>>>>-------------------------------|
+````
+---
 
 # For development
 
@@ -55,6 +76,7 @@ This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 ```
 
+---
 ### Errors
 
 #### One
