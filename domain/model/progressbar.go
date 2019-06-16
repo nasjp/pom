@@ -3,13 +3,12 @@ package model
 import (
 	"fmt"
 	"io"
-	"log"
 	"os"
 	"time"
 
-	mp3 "github.com/hajimehoshi/go-mp3"
+	"github.com/hajimehoshi/go-mp3"
 	"github.com/hajimehoshi/oto"
-	pb "gopkg.in/cheggaaa/pb.v2"
+	"gopkg.in/cheggaaa/pb.v2"
 )
 
 // Bar ...
@@ -78,11 +77,11 @@ func (b Bar) outputBar(m uint) {
 	bar.Set("minutes", m)
 	defer bar.Finish()
 	for i := 0; i < int(secs); i++ {
-		if int(secs)-i == 5 {
-			if err := sound(); err != nil {
-				log.Fatal(err)
-			}
-		}
+		//if int(secs)-i == 5 {
+		//	if err := sound(); err != nil {
+		//		log.Fatal(err)
+		//	}
+		//}
 		bar.Add(1)
 		time.Sleep(time.Second)
 	}
@@ -93,11 +92,11 @@ func (b Bar) outputBarSecs(secs uint) {
 	bar.Set("seconds", secs)
 	defer bar.Finish()
 	for i := 0; i < int(secs); i++ {
-		if int(secs)-i == 5 {
-			if err := sound(); err != nil {
-				log.Fatal(err)
-			}
-		}
+		//if int(secs)-i == 5 {
+		//	if err := sound(); err != nil {
+		//		log.Fatal(err)
+		//	}
+		//}
 		bar.Add(1)
 		time.Sleep(time.Second)
 	}
